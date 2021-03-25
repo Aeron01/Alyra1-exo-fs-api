@@ -22,7 +22,7 @@ for (let i = 2; i < process.argv.length - 1; i++) {
 
   let fileCont = fs.readFileSync(process.argv[i], 'utf-8')
 
-  fs.appendFileSync(`${process.argv[process.argv.length - 1]}`, `${fileCont}`, 'utf-8')
+  fs.appendFileSync(`${process.argv[process.argv.length - 1]}`, `${fileCont}\n`, 'utf-8')
 
 }
 
