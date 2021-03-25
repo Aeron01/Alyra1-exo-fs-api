@@ -1,8 +1,8 @@
 const chalk = require('chalk');
 const fs = require('fs')
 
-if (process.argv.length > 7 || process.argv.length < 3) {
-  console.log(chalk.red('Usage: node cat.js file.ext file1.ext file2.ext file3.ext file.ext4'))
+if (process.argv.length > process.argv[process.argv.length - 1] || process.argv.length < 3) {
+  console.log(chalk.red('Usage: node cat.js file.ext'))
   process.exit(1)
 }
 
