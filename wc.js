@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const fs = require('fs')
 
 if (process.argv.length !== 3) {
-  console.log(chalk.red('Usage: node test.js file.txt'))
+  console.log(chalk.red('Usage: node wc.js file.txt'))
   process.exit(1)
 }
 
@@ -18,6 +18,6 @@ if (!stats.isFile()) {
   process.exit(1)
 }
 
-console.log(stats.size)
-console.log(txt.split(' ').length)
-console.log(txt.split('\n').length)
+console.log(chalk.green('Caracter Number: '), (chalk.yellow(`${stats.size}`)))
+console.log(chalk.green('Word Number: '), (chalk.yellow(`${txt.split(' ').length}`)))
+console.log(chalk.green('Line Number: '), (chalk.yellow(`${txt.split('\n').length}`)))
