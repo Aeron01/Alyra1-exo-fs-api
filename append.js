@@ -2,10 +2,10 @@ const chalk = require('chalk');
 const fs = require('fs')
 let contFil = ''
 if (process.argv.length > process.argv[process.argv.length - 1] || process.argv.length < 5) {
-  console.log(chalk.red('Usage: node append.js file.ext file1.ext file2.ext file3.ext file4.ext file5.ext dst.txt'))
+  console.log(chalk.red('Usage min: node append.js file.ext file1.ext file2.ext dst.txt'))
+  console.log(chalk.red('Usage max(right now): node append.js file.ext file1.ext file2.ext file3.ext file4.ext file5.ext dst.txt'))
   process.exit(1)
 }
-
 
 
 for (let i = 2; i < process.argv.length - 1; i++) {
