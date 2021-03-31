@@ -1,5 +1,6 @@
 const chalk = require('chalk');
 const fs = require('fs')
+const readlineSync = require('readline-sync')
 
 if (process.argv.length !== 4) {
   console.log(chalk.red('Usage: node cp.js src.txt dst.txt'))
@@ -19,6 +20,15 @@ if (!stats.isFile()) {
 
 let fileCont = fs.readFileSync(process.argv[2], 'utf-8')
 
-fs.closeSync(fs.openSync(`${process.argv[3]}`, 'w'))
+let chekfileE = fs.existsSync(process.argv[3])
+if (chekfileE === true) {
+  if (readlineSync.keyInYN(`The file ${process.argv[3]} exist. Overwrite it ? `)) {
+
+  } else {
+    console.log(chalk.cyanBright('Program interupted by user.'))
+    process.exit(1)
+  }
+}
 fs.writeFileSync(`${process.argv[3]}`, `${fileCont}`)
+console.log(chalk.blueBright(`${process.argv[2]} ==> ${process.argv[3]}`))
 console.log(chalk.greenBright('Copy complete !'))
