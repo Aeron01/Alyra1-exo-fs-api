@@ -1,16 +1,20 @@
 const chalk = require('chalk');
 const fs = require('fs')
+const readlineSync = require('readline-sync')
 let contFil = ''
 
-if (/*process.argv.length > process.argv[process.argv.length - 1] ||*/ process.argv.length < 5) {
+if (process.argv.length < 5) {
   console.log(chalk.red('Usage min: node append.js file.ext file1.ext dst.txt'))
-  //console.log(chalk.red('Usage max(right now): node append.js file.ext file1.ext file2.ext file3.ext file4.ext file5.ext dst.txt'))
+
   process.exit(1)
 }
 
-if (fs.existsSync(process.argv[process.argv.length - 1])) {
-  console.log(chalk.red(`Error: ${process.argv[process.argv.length - 1]} exist`))
-  process.exit(1)
+if (fs.existsSync(process.argv[process.argv.length - 1]) === true) {
+  if (readlineSync.keyInYN(chalk.yellowBright(`The file ${process.argv[process.argv.length - 1]} exist. Do you want to overwrite it ?`))) {
+  } else {
+    console.log(chalk.cyanBright('Program interupted by user.'))
+    process.exit(1)
+  }
 }
 
 for (let i = 2; i < process.argv.length - 1; i++) {
@@ -27,10 +31,10 @@ for (let i = 2; i < process.argv.length - 1; i++) {
   }
 
   let fileCont = fs.readFileSync(process.argv[i], 'utf-8')
-  //fileCont += '\n'
+  fileCont += '\n'
 
-  fs.appendFileSync(`${process.argv[process.argv.length - 1]}`, `${fileCont}\n`, 'utf-8')
-
+  fs.appendFileSync(`${process.argv[process.argv.length - 1]}`, `${fileCont}`, 'utf-8')
+  console.log(chalk.greenBright(` ${process.argv[i]} ==> ${process.argv[process.argv.length - 1]}`))
 }
 
 console.log(chalk.greenBright('Copy complete !'))
