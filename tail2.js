@@ -6,7 +6,7 @@ let nbLines = 10
 let indexFile = 2
 //Verification des argument entrer en ligne de commande
 if (process.argv.length < 3 || process.argv.length > 5) {
-  console.log(chalk.red('Usage: node tail.js [option: -n Number (default 10)] file.txt -The file must contain at least 10 lines!'))
+  console.log(chalk.red('Usage: node tail.js [option: -n Number (default 10)] file.txt'))
   process.exit(1)
 }
 //Verification si l'option '-n' est présente ou non dans les arguments en ligne de commande
@@ -14,7 +14,7 @@ if (process.argv.length < 3 || process.argv.length > 5) {
 if (process.argv[2] === '-n') {
   if (isNaN(process.argv[3])) {
     console.log(chalk.redBright(`Error: ${process.argv[3]} is not a number.`))
-    console.log(chalk.red('Usage: node tail.js [option: -n Number (default 10)] file.txt -The file must contain at least 10 lines!'))
+    console.log(chalk.red('Usage: node tail.js [option: -n Number (default 10)] file.txt'))
     process.exit(1)
   }
   nbLines = Math.abs(Number(process.argv[3]))
